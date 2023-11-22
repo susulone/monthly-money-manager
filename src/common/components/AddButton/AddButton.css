@@ -1,0 +1,17 @@
+#btn-add {
+    display: flex;
+    align-items: center;
+    margin-inline: auto;
+
+    font-family: var(--primary-font);
+    font-size: 1.125rem;
+    font-weight: 700;
+
+    padding-inline-start: 12px;
+    padding-inline-end: 20px;
+    padding-block: 8px;
+}
+
+#btn-add-icon {
+    margin-inline-end: 4px;
+}

@@ -1,0 +1,263 @@
+/* TRANSACTION PAGE */
+
+#transaction-view {
+    /* border: 1px solid red; */
+}
+
+/* TRANSACTION LIST */
+
+.transaction-list {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(10, 1fr);
+    grid-auto-flow: column;
+
+    margin-inline: auto;
+}
+
+@media (min-width: 60em) {
+    .transaction-list {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 24px;
+        grid-template-rows: repeat(5, 1fr);
+        width: calc(100% - 10vw);
+    }
+}
+
+/* TRANSACTION ITEM */
+
+.transaction-item {
+    display: grid;
+    /* grid-template-columns: 1fr minmax(200px, 1fr) 1fr; */
+    gap: 24px;
+    align-items: end;
+
+    grid-template-columns: 1fr 3fr 1fr;
+    margin-inline: 3vw;
+
+    font-family: var(--primary-font);
+    font-size: 1.125rem;
+    color: var(--text-color);
+
+    margin-block-end: 20px;
+    padding-block: 6px;
+    padding-inline: 10px;
+    cursor: pointer;
+
+    /* used for focus state in keyboard navigation */
+    border-radius: 8px;
+}
+
+/* Not sure if this is needed */
+.transaction-id {
+    display: none;
+}
+
+/* .transaction-item-date {
+}
+
+.transaction-item-section {
+} */
+
+.transaction-item-category {
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: var(--accent-color);
+
+    text-align: left;
+    text-transform: capitalize;
+    margin-block-end: 2px;
+}
+
+.transaction-item-identifier {
+    text-align: left;
+}
+
+.transaction-amount {
+    font-weight: 700;
+}
+
+@media (min-width: 60em) {
+    .transaction-item {
+        grid-template-columns: 1fr minmax(200px, 1fr) 1fr;
+        margin-inline: auto;
+    }
+}
+
+/* SEARH BAR STYLING */
+.search-bar {
+    display: flex;
+    padding: 12px;
+    /* border: 1px solid red; */
+}
+
+.form-field {
+    position: relative;
+    display: inline-block;
+}
+
+.search-icon {
+    position: absolute;
+    right: 0px;
+    top: 4px;
+
+    color: var(--text-color);
+    padding-inline-end: 12px;
+}
+
+.search-bar input {
+    color: var(--text-color);
+    font-family: var(--primary-font);
+    font-size: 1.125rem;
+
+    padding-inline-start: 12px;
+    padding-inline-end: 4px;
+    padding-block: 4px;
+
+    border-radius: 8px;
+    border: 1px solid var(--text-color);
+    border-color: var(--text-color);
+}
+
+/* EDIT TRANSACTION MODAL */
+.modal-background {
+    min-width: 100%;
+    min-height: 100vh;
+    background-color: rgba(200, 200, 200, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-container {
+    width: fit-content;
+    margin-inline: auto;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 8px;
+    padding-block-end: 32px;
+}
+
+.modal-heading {
+    display: flex;
+    justify-content: end;
+}
+.modal-body {
+    padding-inline: 24px;
+    text-align: left;
+}
+
+.modal-title {
+    color: var(--accent-color);
+    font-size: 2.5rem;
+    text-transform: capitalize;
+    margin-block-end: 32px;
+}
+.modal-form {
+    font-family: var(--primary-font);
+    color: var(--text-color);
+    font-size: 18px;
+}
+
+.modal-form input,
+select {
+    font-size: 1rem;
+    padding-inline: 8px;
+    padding-block: 2px;
+    border-radius: 4px;
+}
+
+.modal-form input {
+    border: 1px solid var(--text-color);
+}
+
+.modal-form select {
+    color: var(--text-color);
+    border: none;
+    outline: 1px solid var(--text-color);
+    outline-offset: -1px;
+}
+
+.modal-form label {
+    font-family: var(--secondary-font);
+    font-size: 0.875rem;
+}
+
+.modal-form label,
+input {
+    display: block;
+}
+.amound-and-date {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+input[type="date"] {
+    color: var(--text-color);
+    font-family: var(--primary-font);
+}
+
+/* Make's the field even with date field */
+input[type="number"] {
+    padding-block: 1px;
+}
+
+.amound-and-date-section input,
+.select-and-identify input,
+.select-and-identify select {
+    width: 100%;
+}
+
+.select-and-identify input,
+.select-and-identify,
+.amound-and-date,
+.radio-buttons {
+    margin-block-end: 12px;
+}
+
+.radio-button-section input,
+.radio-button-section label {
+    display: inline;
+}
+
+.radio-button-section {
+    margin-block: 4px;
+}
+
+.modal-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.modal-btn-exit {
+    color: var(--accent-color);
+    background-color: transparent;
+    padding: 6px 6px 2px 6px;
+}
+
+.btn-submit,
+.btn-delete,
+.btn-cancel {
+    border: 2px solid var(--accent-color);
+    font-size: 1rem;
+    font-weight: 700;
+    padding-inline: 16px;
+    padding-block: 8px;
+}
+
+.btn-delete {
+    border: 2px solid red;
+    color: red;
+    background-color: white;
+    margin-inline-end: 12px;
+}
+
+.btn-cancel {
+    color: var(--accent-color);
+    background-color: white;
+    margin-inline-end: 12px;
+}
