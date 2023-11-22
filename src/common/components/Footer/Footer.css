@@ -1,0 +1,12 @@
+#footer {
+    width: 100%;
+    padding-block: 24px;
+    text-align: center;
+}
+
+#footer-content {
+    font-family: var(--secondary-font);
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 0.875rem;
+}

@@ -1,0 +1,51 @@
+#primary-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 100%;
+    padding-inline: 24px;
+    padding-block: 20px;
+
+    background-color: #bbc3f9;
+}
+
+#link-section {
+    display: flex;
+    align-items: center;
+
+    font-family: var(--secondary-font);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+#link-section p {
+    margin-inline: 10px;
+}
+
+#protected-routes {
+    display: flex;
+}
+
+a:link,
+a:visited {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+a:hover,
+a:active {
+    text-decoration: underline;
+}
+
+/* This needs work */
+/* a:focus,
+button:focus {
+    outline-style: none;
+    outline-offset: 2px;
+    outline: 2px solid #ff6c47;
+    box-shadow: none;
+    border-radius: 8px;
+} */

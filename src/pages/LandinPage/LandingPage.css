@@ -1,0 +1,86 @@
+.page-wrapper {
+    min-height: calc(100vh - 80px);
+    display: grid;
+    gap: 24px;
+    width: 80%;
+    margin-block: 5vh;
+    margin-inline: auto;
+}
+
+.page-section {
+    text-align: left;
+    /* margin-inline: auto; */
+
+    padding-inline-start: 32px;
+}
+
+.page-column {
+    margin: auto;
+}
+
+.page-heading {
+    font-family: var(--primary-font);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    line-height: 110%;
+    text-transform: uppercase;
+
+    max-width: 20ch;
+    min-width: 15ch;
+    margin-block-end: 12px;
+}
+
+.page-subheading {
+    font-family: var(--secondary-font);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--accent-color);
+    line-height: 125%;
+
+    max-width: 40ch;
+}
+
+.page-body {
+    font-size: 1.25rem;
+    color: var(--text-color);
+    line-height: 130%;
+
+    max-width: 42ch;
+    padding-block-end: 18px;
+    margin-block: 24px;
+}
+
+#btn-register {
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding-block: 1rem;
+    width: 90%;
+}
+
+/* This needs fixing */
+.page-img {
+    max-width: 100%;
+    min-width: 80%;
+    padding: 20px;
+    order: -1;
+}
+
+@media (min-width: 55em) {
+    .page-wrapper {
+        grid-template-columns: 1fr 1fr;
+        margin-block: 10vh;
+    }
+
+    .page-section {
+        margin-inline: auto;
+        padding-inline-start: 0px;
+    }
+
+    /* This needs fixing */
+    #hero-img {
+        width: 100%;
+        min-width: 80%;
+        order: 0;
+    }
+}

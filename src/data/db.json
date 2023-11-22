@@ -1,0 +1,39 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "email": "jane.doe@mail.com",
+            "hashedPassword": "password",
+            "monthlyBudgets": [
+                {
+                    "budgetPeriod": "2023/11",
+                    "budgets": [
+                        {
+                            "name": "Bills & Subscriptions",
+                            "items": [
+                                { "itemName": "Rent", "budgetedAmount": 500 }
+                            ]
+                        }
+                    ],
+                    "transactions": [
+                        {
+                            "id": "",
+                            "budgetGroup": "",
+                            "category": "",
+                            "date": "",
+                            "identifier": "",
+                            "amount": 0,
+                            "type": ""
+                        }
+                    ],
+                    "incomes": [
+                        {
+                            "planned": [],
+                            "received": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

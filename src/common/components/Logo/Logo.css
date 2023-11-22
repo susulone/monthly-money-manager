@@ -1,0 +1,23 @@
+#logo-container {
+    display: flex;
+    /* flex-grow: 1; */
+    align-items: center;
+}
+
+#logo-name {
+    font-family: "Sen", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #111c70;
+}
+
+#logo-img {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 4px;
+}
+/*
+On smaller screens
+when NavPrimary wraps, move logo to the center of the screen with
+justify-content: center;
+ */
