@@ -12,6 +12,9 @@
     --secondary-font: "Source Serif 4", serif;
     --text-color: #060d41;
     --accent-color: #111c70;
+    --btn-hover-color: #0b7e78;
+    --btn-hover-color2: #f5a80f;
+    --bth-hover-text-color: #060d41;
 
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     /*

@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { toTitleCase } from "../../utils/helpers";
-import "./TransactionsStyles.css";
+import "./styles.css";
 import { X } from "react-feather";
 
 export const EditTransactionModal = ({
@@ -21,7 +21,7 @@ export const EditTransactionModal = ({
 
     return (
         <div className="modal-background">
-            <aside className="modal-container">
+            <dialog open className="modal-container">
                 <section className="modal-heading">
                     <button
                         className="modal-btn-exit"
@@ -107,7 +107,7 @@ export const EditTransactionModal = ({
                         </section>
                     </form>
                 </section>
-            </aside>
+            </dialog>
         </div>
     );
 };

@@ -1,7 +1,12 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
-// import { RootState } from "../../app/store";
+import {
+    createAsyncThunk,
+    createSlice,
+    PayloadAction,
+    nanoid,
+} from "@reduxjs/toolkit";
+import { RootState, AppThunk } from "../../app/store";
 
-const initialState = [
+const initialState: TransactionsState[] = [
     {
         id: "1",
         category: "income",
@@ -94,27 +99,28 @@ const initialState = [
 
 const transactionsSlice = createSlice({
     name: "transactions",
-    initialState: [] as TransactionsState[],
+    initialState,
     reducers: {
         transactionAdded: {
-            reducer: (state, action) => {
+            reducer: (state, action: PayloadAction<any>) => {
                 state.push(action.payload);
+                console.log(action.payload);
+                console.log(typeof action);
             },
             prepare: (
                 category: string,
                 date: string,
                 identifier: string,
-                amount: number,
+                amount: string,
                 transactionType: string
             ) => {
-                const id = nanoid();
                 return {
                     payload: {
-                        id,
+                        id: nanoid(),
                         category,
-                        date,
+                        date: date.replaceAll("-", "."),
                         identifier,
-                        amount,
+                        amount: Number(amount),
                         transactionType,
                     },
                 };

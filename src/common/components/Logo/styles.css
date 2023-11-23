@@ -1,7 +1,8 @@
 #logo-container {
     display: flex;
-    /* flex-grow: 1; */
+    flex-grow: 1;
     align-items: center;
+    padding: 4px;
 }
 
 #logo-name {
@@ -9,15 +10,16 @@
     font-size: 0.9rem;
     font-weight: 800;
     color: #111c70;
+    padding-inline: 4px;
 }
 
 #logo-img {
     width: 1.5rem;
     height: 1.5rem;
-    padding: 4px;
 }
-/*
-On smaller screens
-when NavPrimary wraps, move logo to the center of the screen with
-justify-content: center;
- */
+
+@media (min-width: 60em) {
+    #logo-container {
+        flex-grow: 0;
+    }
+}

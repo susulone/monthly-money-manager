@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { nanoid } from "@reduxjs/toolkit";
 import { transactionAdded } from "./transactionsSlice";
 import { useAppDispatch } from "../../app/hooks";
 import { toTitleCase } from "../../utils/helpers";
-import "./TransactionsStyles.css";
+import "./styles.css";
 import { X } from "react-feather";
 
 export const AddTransactionModal = ({
@@ -56,14 +55,13 @@ export const AddTransactionModal = ({
     const onAddTransaction = () => {
         if (amount && date && identifier && category && transactionType) {
             dispatch(
-                transactionAdded({
-                    id: nanoid(),
+                transactionAdded(
                     category,
                     date,
                     identifier,
-                    amount: Number(amount),
-                    transactionType,
-                })
+                    amount,
+                    transactionType
+                )
             );
             setCategory("");
             setDate("");
@@ -75,7 +73,7 @@ export const AddTransactionModal = ({
 
     return (
         <div className="modal-background">
-            <aside className="modal-container">
+            <dialog open className="modal-container">
                 <section className="modal-heading">
                     <button
                         className="modal-btn-exit"
@@ -88,7 +86,6 @@ export const AddTransactionModal = ({
                 <section className="modal-body">
                     <h2 className="modal-title">{displayTransactionType()}</h2>
                     <form className="modal-form">
-                        {/* <p>{id}</p> */}
                         <section className="amound-and-date">
                             <section className="amound-and-date-section">
                                 <label htmlFor="amount">Amount:</label>
@@ -189,7 +186,7 @@ export const AddTransactionModal = ({
                         </section>
                     </form>
                 </section>
-            </aside>
+            </dialog>
         </div>
     );
 };

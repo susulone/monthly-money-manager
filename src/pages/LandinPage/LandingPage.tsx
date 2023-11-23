@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./LandingPage.css";
+import "./styles.css";
 import LandingPiggy from "../../assets/landing-piggy.svg";
 import { Footer } from "../../common/components/Footer";
 
@@ -22,7 +22,9 @@ export const LandingPage = () => {
                         of your incomes and expenses.
                     </p>
                     <Link to="/register">
-                        <button id="btn-register">Sign Up Now</button>
+                        <button id="btn-register" className="btn-wide">
+                            Sign Up Now
+                        </button>
                     </Link>
                 </section>
                 <img

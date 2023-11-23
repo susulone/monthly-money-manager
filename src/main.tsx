@@ -8,12 +8,15 @@ import { store } from "./app/store.ts";
 
 // Routes
 import Root from "./App.tsx";
-import { LandingPage } from "./pages/LandinPage/LandingPage.tsx";
 import { ErrorPage } from "./pages/ErrorPage/ErrorPage.tsx";
+import { LandingPage } from "./pages/LandinPage/LandingPage.tsx";
+import { AboutPage } from "./pages/AboutPage/AboutPage.tsx";
+import { OverviewPage } from "./features/overview/OverviewPage.tsx";
+import { BudgetsPage } from "./features/budgets/BudgetsPage.tsx";
+import { TransactionsPage } from "./features/transactions/TransactionsPage.tsx";
 
 // React Router
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import TransactionsPage from "./features/transactions/TransactionsPage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +29,24 @@ const router = createBrowserRouter([
                 path: "/",
                 element: <LandingPage />,
                 // loader: landingPageLoader,
+                errorElement: <ErrorPage />,
+            },
+            {
+                path: "/about",
+                element: <AboutPage />,
+                // loader: aboutPageLoader,
+                errorElement: <ErrorPage />,
+            },
+            {
+                path: "/overview",
+                element: <OverviewPage />,
+                // loader: overviewPageLoader,
+                errorElement: <ErrorPage />,
+            },
+            {
+                path: "/budgets",
+                element: <BudgetsPage />,
+                // loader: budgetsPageLoader,
                 errorElement: <ErrorPage />,
             },
             {

@@ -11,10 +11,57 @@
     min-height: 100vh;
 }
 
+/* BASIC BUTTON STYLING */
+
 button {
     font-family: var(--primary-font);
+    font-size: 1rem;
+    font-weight: 700;
     color: #fff;
-    background-color: var(--accent-color);
+
     border: none;
     border-radius: 8px;
+    padding-block: 0.5rem;
+    padding-inline: 1rem;
+    background-color: var(--accent-color);
+}
+
+button:hover {
+    background-color: var(--btn-hover-color);
+    transform: scale(0.95);
+}
+
+button:focus {
+    background-color: var(--btn-hover-color);
+    outline: none;
+    transform: scale(0.95);
+}
+
+.btn-wide {
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding-block: 1rem;
+    width: 90%;
+}
+
+/* BASIC LINK STYLING */
+
+a:link,
+a:visited {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+a:hover,
+a:active {
+    border-bottom: 2px solid var(--text-color);
+    transform: scale(0.95);
+}
+
+/* This needs work */
+a:focus {
+    outline-style: none;
+    box-shadow: none;
+    border-bottom: 2px solid var(--text-color);
+    transform: scale(0.95);
 }

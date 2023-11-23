@@ -4,7 +4,7 @@ import { TransactionsSearchBar } from "./TransactionsSearchBar";
 import { AddTransactionModal } from "./AddTransactionModal";
 import { AddButton } from "../../common/components/AddButton/AddButton";
 
-const TransactionsPage = () => {
+export const TransactionsPage = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [openModal, setOpenModal] = useState(false);
     return (
@@ -29,5 +29,3 @@ const TransactionsPage = () => {
         </main>
     );
 };
-
-export default TransactionsPage;

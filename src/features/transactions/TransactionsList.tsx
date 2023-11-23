@@ -4,13 +4,11 @@ import { selectAllTransaction } from "./transactionsSlice";
 
 export const TransactionsList = ({ searchQuery }: TransactionsListProps) => {
     const transactions = useAppSelector(selectAllTransaction);
-    let tabindexStart = 9;
 
     return (
         <section className="transaction-list">
             {searchQuery.length <= 0
                 ? transactions.map((transaction: TransactionItemProps) => {
-                      tabindexStart++;
                       return (
                           <TransactionItem
                               key={transaction.id}
@@ -20,12 +18,11 @@ export const TransactionsList = ({ searchQuery }: TransactionsListProps) => {
                               identifier={transaction.identifier}
                               amount={transaction.amount}
                               transactionType={transaction.transactionType}
-                              tabindex={tabindexStart}
                           />
                       );
                   })
                 : transactions
-                      .filter((transaction: TransactionItem) => {
+                      .filter((transaction) => {
                           if (
                               searchQuery.length >= 1 &&
                               transaction.identifier
@@ -36,7 +33,6 @@ export const TransactionsList = ({ searchQuery }: TransactionsListProps) => {
                           }
                       })
                       .map((transaction: TransactionItemProps) => {
-                          tabindexStart++;
                           return (
                               <TransactionItem
                                   key={transaction.id}
@@ -46,7 +42,6 @@ export const TransactionsList = ({ searchQuery }: TransactionsListProps) => {
                                   identifier={transaction.identifier}
                                   amount={transaction.amount}
                                   transactionType={transaction.transactionType}
-                                  tabindex={tabindexStart}
                               />
                           );
                       })}

@@ -21,7 +21,6 @@ type TransactionItemProps = {
     identifier: string;
     amount: number;
     transactionType: "income" | "expense";
-    tabindex: number;
     // setOpenModal: (value: boolean) => void;
 };
 

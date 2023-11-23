@@ -1,7 +1,7 @@
-import "./PrimaryNavigation.css";
+import "./styles.css";
 import { useState } from "react";
 import { NavLink, Form } from "react-router-dom";
-import { Logo } from "../Logo/";
+import { Logo } from "../Logo/Logo";
 import { NavButton } from "../NavButton/NavButton";
 
 export const PrimaryNavigation = () => {
@@ -9,9 +9,10 @@ export const PrimaryNavigation = () => {
     const [userSignedIn, setUserSignedIn] = useState(true);
     return (
         <nav id="primary-nav">
-            <NavLink to="/" aria-label="Go to home page">
+            <NavLink to="/" aria-label="Go to home page" id="nav-logo">
                 <Logo />
             </NavLink>
+
             <section id="link-section">
                 <NavLink to="about" aria-label="Go to about page">
                     <p>About</p>

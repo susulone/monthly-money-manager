@@ -1,5 +1,5 @@
 import { Search } from "react-feather";
-import "./TransactionsStyles.css";
+import "./styles.css";
 
 export const TransactionsSearchBar = ({
     searchQuery,

@@ -1,8 +1,6 @@
 import { useRouteError } from "react-router-dom";
-import "./ErrorPage.css";
-
-// Components
 import { Footer } from "../../common/components/Footer/";
+import "./styles.css";
 
 export const ErrorPage = () => {
     const error: unknown = useRouteError();

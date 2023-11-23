@@ -1,5 +1,5 @@
 import { EditTransactionModal } from "./EditTransactionModal";
-import "./TransactionsStyles.css";
+import "./styles.css";
 import { useState } from "react";
 
 export const TransactionItem = ({
@@ -9,7 +9,6 @@ export const TransactionItem = ({
     identifier,
     amount,
     transactionType,
-    tabindex,
 }: TransactionItemProps) => {
     const [openModal, setOpenModal] = useState(false);
     // use Date().toLocaleDateString() when adding transactions' dates to db
@@ -19,12 +18,10 @@ export const TransactionItem = ({
             <article
                 className="transaction-item"
                 onClick={() => setOpenModal(true)}
-                tabIndex={tabindex}
+                tabIndex={0}
             >
                 <div className="transaction-id">{id}</div>
-                <p className="transaction-item-date">
-                    {date.replaceAll("/", ".")}
-                </p>
+                <p className="transaction-item-date">{date}</p>
                 <div className="transaction-item-section">
                     <h6 className="transaction-item-category">{category}</h6>
                     <p className="transaction-item-identifier">{identifier}</p>

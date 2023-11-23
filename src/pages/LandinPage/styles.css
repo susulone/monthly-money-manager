@@ -5,6 +5,7 @@
     width: 80%;
     margin-block: 5vh;
     margin-inline: auto;
+    border: 1px solid red;
 }
 
 .page-section {
@@ -51,10 +52,8 @@
     margin-block: 24px;
 }
 
+/* Inherits basic styling from App.css button */
 #btn-register {
-    font-size: 1.25rem;
-    font-weight: 700;
-    padding-block: 1rem;
     width: 90%;
 }
 
@@ -69,7 +68,8 @@
 @media (min-width: 55em) {
     .page-wrapper {
         grid-template-columns: 1fr 1fr;
-        margin-block: 10vh;
+        margin-block: 0;
+        min-height: calc(100vh - 160px);
     }
 
     .page-section {
@@ -77,7 +77,6 @@
         padding-inline-start: 0px;
     }
 
-    /* This needs fixing */
     #hero-img {
         width: 100%;
         min-width: 80%;

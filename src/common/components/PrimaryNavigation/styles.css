@@ -1,19 +1,25 @@
 #primary-nav {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 
     max-width: 100%;
     padding-inline: 24px;
     padding-block: 20px;
-
     background-color: #bbc3f9;
+}
+
+#nav-logo {
+    width: auto;
+    justify-content: right;
 }
 
 #link-section {
     display: flex;
+    width: auto;
     align-items: center;
+    justify-content: right;
 
     font-family: var(--secondary-font);
     font-size: 1rem;
@@ -29,23 +35,11 @@
     display: flex;
 }
 
-a:link,
-a:visited {
-    color: var(--text-color);
-    text-decoration: none;
+@media (min-width: 46em) {
+    #primary-nav {
+        justify-content: space-between;
+    }
+    #link-section {
+        width: auto;
+    }
 }
-
-a:hover,
-a:active {
-    text-decoration: underline;
-}
-
-/* This needs work */
-/* a:focus,
-button:focus {
-    outline-style: none;
-    outline-offset: 2px;
-    outline: 2px solid #ff6c47;
-    box-shadow: none;
-    border-radius: 8px;
-} */
