@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 // import { RootState } from "../../app/store";
 
-const initialState: TransactionsState[] = [
+const initialState = [
     {
         id: "1",
         category: "income",
@@ -94,10 +94,31 @@ const initialState: TransactionsState[] = [
 
 const transactionsSlice = createSlice({
     name: "transactions",
-    initialState,
+    initialState: [] as TransactionsState[],
     reducers: {
-        transactionAdded(state, action) {
-            state.push(action.payload);
+        transactionAdded: {
+            reducer: (state, action) => {
+                state.push(action.payload);
+            },
+            prepare: (
+                category: string,
+                date: string,
+                identifier: string,
+                amount: number,
+                transactionType: string
+            ) => {
+                const id = nanoid();
+                return {
+                    payload: {
+                        id,
+                        category,
+                        date,
+                        identifier,
+                        amount,
+                        transactionType,
+                    },
+                };
+            },
         },
 
         // TO DO:
