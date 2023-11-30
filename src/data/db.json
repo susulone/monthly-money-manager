@@ -1,9 +1,7 @@
 {
     "users": [
         {
-            "id": 1,
-            "email": "jane.doe@mail.com",
-            "hashedPassword": "password",
+            "id": "user-test-7f702af7-c73c-4373-a45b-59349ea9bde3",
             "monthlyBudgets": [
                 {
                     "budgetPeriod": "2023/11",
@@ -11,25 +9,28 @@
                         {
                             "name": "Bills & Subscriptions",
                             "items": [
-                                { "itemName": "Rent", "budgetedAmount": 500 }
+                                {
+                                    "itemName": "Rent",
+                                    "budgetedAmount": 500
+                                }
                             ]
                         }
                     ],
                     "transactions": [
                         {
-                            "id": "",
+                            "id": "1",
                             "budgetGroup": "",
-                            "category": "",
-                            "date": "",
-                            "identifier": "",
-                            "amount": 0,
-                            "type": ""
+                            "category": "income",
+                            "date": "10/11/2023",
+                            "identifier": "November's pay check",
+                            "amount": 500,
+                            "transactionType": "income"
                         }
                     ],
-                    "incomes": [
+                    "plannedIncomes": [
                         {
-                            "planned": [],
-                            "received": []
+                            "itemName": "November's Pay",
+                            "budgetedAmount": 500
                         }
                     ]
                 }

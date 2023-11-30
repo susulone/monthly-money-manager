@@ -1,0 +1,70 @@
+#header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    /* Make this width global and use it in every page */
+    width: calc(100% - 10vw);
+
+    margin-inline: auto;
+    margin-block: 24px;
+
+    font-family: var(--primary-font);
+    color: var(--accent-color);
+}
+
+.header-column {
+    width: 100%;
+}
+
+#header-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#header-title {
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+#header-navigation {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+
+    font-family: var(--secondary-font);
+    color: var(--text-color);
+    font-weight: 400;
+}
+
+.header-navigation-btn {
+    color: var(--text-color);
+    background-color: transparent;
+}
+
+.header-navigation-btn:hover,
+.header-navigation-btn:focus {
+    /* Change this color */
+    color: red;
+    background-color: transparent;
+    transform: scale(0.85);
+}
+
+#header-search {
+    width: 70%;
+    margin-inline: auto;
+}
+
+@media (min-width: 50em) {
+    #header {
+        flex-direction: row;
+    }
+    #header-main {
+        align-items: start;
+    }
+
+    #header-search {
+        width: 60%;
+    }
+}

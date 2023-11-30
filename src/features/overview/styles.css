@@ -1,0 +1,116 @@
+/* INCOME ITEM */
+
+.income-item-wrapper {
+    display: grid;
+    grid-template-columns: 3.5fr 1.5fr 1.5fr 52px 52px;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+}
+
+/* .income-item-wrapper input {
+
+} */
+
+/* .income-item-field {
+    border: 1px solid red;
+} */
+
+/* #income-item-identifier {
+
+} */
+
+/*  INCOME ACCORDION */
+
+#accordion {
+    display: flex;
+    flex-direction: column;
+    padding-inline: 24px;
+}
+
+.accordion-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #79cca2;
+    padding-block: 8px;
+    padding-inline: 24px;
+}
+
+.opened {
+    border-radius: 8px 8px 0px 0px;
+}
+
+#accordion-title {
+    margin: 0;
+    font-family: var(--primary-font);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--accent-color);
+}
+
+#accordion-icon {
+    padding-block-start: 6px;
+}
+
+#accordion-body {
+    display: flex;
+    border-radius: 0px 0px 8px 8px;
+    border: 1px solid #79cca2;
+    justify-content: center;
+    text-align: left;
+}
+
+#accordion-body-wrapper {
+    width: 100%;
+    margin-inline: 12px;
+    margin-block: 12px;
+}
+
+#table-heading {
+    display: grid;
+    grid-template-columns: 3.5fr 1.5fr 1.5fr 52px 52px;
+    font-family: var(--secondary-font);
+    color: var(--text-color);
+    font-size: 1rem;
+    border-bottom: 1px solid var(--accent-color);
+}
+
+#no-content {
+    font-family: var(--secondary-font);
+    text-align: center;
+    margin: 12px;
+}
+
+.border {
+    border: 1px solid red;
+}
+
+#table-footer {
+    display: grid;
+    grid-template-columns: 3.5fr 1.5fr 1.5fr 52px 52px;
+    font-family: var(--primary-font);
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 1.125rem;
+    align-items: center;
+    border-top: 1px solid var(--accent-color);
+    margin-block: 12px;
+    padding-block-start: 12px;
+}
+
+#table-footer button {
+    margin-inline: 0;
+}
+
+/* INCOME MODAL */
+
+.form-group input {
+    margin-block-end: 12px;
+}
+
+.full-width {
+    width: 100%;
+}

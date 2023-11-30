@@ -1,12 +1,24 @@
 import "./styles.css";
-import { useState } from "react";
-import { NavLink, Form } from "react-router-dom";
-import { Logo } from "../Logo/Logo";
-import { NavButton } from "../NavButton/NavButton";
+// import { useContext } from "react";
+import { useStytch } from "@stytch/react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Logo } from "./Logo";
+import { NavButton } from "./NavButton";
+// import { AuthContext } from "../../../app/context/AuthContext";
+import { useGlobalState } from "../../../app/hooks/useGlobalState";
 
 export const PrimaryNavigation = () => {
-    // Move state to store
-    const [userSignedIn, setUserSignedIn] = useState(true);
+    const { userLoggedIn, setUserLoggedIn, setIsLoading } = useGlobalState();
+    // const { userSignedIn, toggleUserStatus } = useContext(AuthContext);
+    const stytchClient = useStytch();
+    const navigate = useNavigate();
+
+    const logout = () => {
+        stytchClient.session.revoke();
+        setUserLoggedIn(false);
+        // setIsLoading(true);
+        navigate("/");
+    };
     return (
         <nav id="primary-nav">
             <NavLink to="/" aria-label="Go to home page" id="nav-logo">
@@ -17,7 +29,7 @@ export const PrimaryNavigation = () => {
                 <NavLink to="about" aria-label="Go to about page">
                     <p>About</p>
                 </NavLink>
-                {userSignedIn ? (
+                {userLoggedIn ? (
                     <>
                         <section id="protected-routes">
                             <NavLink
@@ -39,7 +51,7 @@ export const PrimaryNavigation = () => {
                                 <p>Transactions</p>
                             </NavLink>
                         </section>
-                        <Form
+                        {/* <Form
                             method="post"
                             action="/logout"
                             onSubmit={(event) => {
@@ -49,14 +61,16 @@ export const PrimaryNavigation = () => {
                                     event.preventDefault();
                                 }
                             }}
-                        >
-                            <NavButton btnText="Sign Out" />
-                        </Form>
+                        > */}
+                        <NavButton btnText="Sign Out" handleOnClick={logout} />
+                        {/* </Form> */}
                     </>
                 ) : (
-                    <NavLink to="/login" aria-label="Sign In">
-                        <NavButton btnText="Sign In" />
-                    </NavLink>
+                    <NavButton
+                        btnText="Sign In"
+                        aria-label="Sign In"
+                        handleOnClick={() => navigate("/login")}
+                    />
                 )}
             </section>
         </nav>

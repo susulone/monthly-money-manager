@@ -1,3 +1,5 @@
+/* NAVIGATION BAR */
+
 #primary-nav {
     display: flex;
     flex-wrap: wrap;
@@ -42,4 +44,38 @@
     #link-section {
         width: auto;
     }
+}
+
+/* LOGO */
+
+#logo-container {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    padding: 4px;
+}
+
+#logo-name {
+    font-family: "Sen", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #111c70;
+    padding-inline: 4px;
+}
+
+#logo-img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+@media (min-width: 60em) {
+    #logo-container {
+        flex-grow: 0;
+    }
+}
+
+/* NAV BUTTON  */
+
+.btn-nav {
+    margin-inline-start: 6px;
 }

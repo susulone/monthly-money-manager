@@ -5,7 +5,6 @@
     width: 80%;
     margin-block: 5vh;
     margin-inline: auto;
-    border: 1px solid red;
 }
 
 .page-section {
@@ -50,11 +49,6 @@
     max-width: 42ch;
     padding-block-end: 18px;
     margin-block: 24px;
-}
-
-/* Inherits basic styling from App.css button */
-#btn-register {
-    width: 90%;
 }
 
 /* This needs fixing */

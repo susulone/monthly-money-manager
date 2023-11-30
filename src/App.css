@@ -44,6 +44,10 @@ button:focus {
     width: 90%;
 }
 
+.btn-link:hover {
+    border-bottom: none;
+}
+
 /* BASIC LINK STYLING */
 
 a:link,
@@ -64,4 +68,25 @@ a:focus {
     box-shadow: none;
     border-bottom: 2px solid var(--text-color);
     transform: scale(0.95);
+}
+
+/* FORM STYLING */
+
+label {
+    font-family: var(--secondary-font);
+    font-size: 0.875rem;
+    padding-block: 2px;
+}
+
+label,
+input {
+    display: block;
+}
+
+input {
+    font-size: 1rem;
+    padding-inline: 8px;
+    padding-block: 2px;
+    border-radius: 4px;
+    border: 1px solid var(--text-color);
 }
