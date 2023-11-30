@@ -1,10 +1,10 @@
+import { useContext } from "react";
+import { SearchContext } from "../../app/context/SearchContext";
 import { Search } from "react-feather";
 import "./styles.css";
 
-export const TransactionsSearchBar = ({
-    searchQuery,
-    setSearchQuery,
-}: TransactionsSearchProps) => {
+export const TransactionsSearchBar = () => {
+    const { searchQuery, setSearchQuery } = useContext(SearchContext);
     return (
         <aside className="search-bar">
             <section className="form-field">
@@ -22,7 +22,6 @@ export const TransactionsSearchBar = ({
                     }}
                 />
             </section>
-            <section className="data-result"></section>
         </aside>
     );
 };

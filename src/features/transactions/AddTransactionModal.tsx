@@ -1,14 +1,46 @@
-import { useState } from "react";
-import { transactionAdded } from "./transactionsSlice";
-import { useAppDispatch } from "../../app/hooks";
 import { toTitleCase } from "../../utils/helpers";
-import "./styles.css";
 import { X } from "react-feather";
+import "./styles.css";
 
+type AddTransactionModalProps = {
+    newAmount: string;
+    setNewAmount: (amount: string) => void;
+    newDate: string;
+    setNewDate: (date: string) => void;
+    newIdentifier: string;
+    setNewIdentifier: (identifier: string) => void;
+    newCategory: string;
+    setNewCategory: (category: string) => void;
+    newBudgetGroup: string;
+    setNewBudgetGroup: (budgetGroup: string) => void;
+    newTransactionType: string;
+    setNewTransactionType: (transactionType: string) => void;
+    handleTransactionSubmit: (
+        amount: string,
+        date: string,
+        identifier: string,
+        category: string,
+        transactionType: string
+    ) => void;
+    setOpenModal: (value: boolean) => void;
+};
 export const AddTransactionModal = ({
+    newAmount,
+    setNewAmount,
+    newDate,
+    setNewDate,
+    newIdentifier,
+    setNewIdentifier,
+    newCategory,
+    setNewCategory,
+    newBudgetGroup,
+    setNewBudgetGroup,
+    newTransactionType,
+    setNewTransactionType,
+    handleTransactionSubmit,
     setOpenModal,
 }: AddTransactionModalProps) => {
-    const dispatch = useAppDispatch();
+    // const dispatch = useAppDispatch();
 
     // These need to be fetched
     const categories = [
@@ -23,54 +55,15 @@ export const AddTransactionModal = ({
         "income",
     ];
 
-    // Transaction's elements
-    const [amount, setAmount] = useState("");
-    const [date, setDate] = useState("");
-    const [identifier, setIdentifier] = useState("");
-    const [category, setCategory] = useState("");
-    const [transactionType, setTransactionType] = useState<string>("expense");
-
-    const onAmountChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-        setAmount(e.target.value);
-    const onDateChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-        setDate(e.target.value);
-    const onIdentifierChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-        setIdentifier(e.target.value);
-    const onCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
-        setCategory(e.target.value);
-    const onTransactionTypeChange = (
-        e: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        setTransactionType(e.target.value);
-    };
-
     const displayTransactionType = () => {
-        if (transactionType !== null) {
-            return transactionType === "income" ? "Add Income" : "Add Expense";
+        if (newTransactionType !== null) {
+            return newTransactionType === "income"
+                ? "Add Income"
+                : "Add Expense";
         } else {
             return "Add Transaction";
         }
     };
-
-    const onAddTransaction = () => {
-        if (amount && date && identifier && category && transactionType) {
-            dispatch(
-                transactionAdded(
-                    category,
-                    date,
-                    identifier,
-                    amount,
-                    transactionType
-                )
-            );
-            setCategory("");
-            setDate("");
-            setIdentifier("");
-            setAmount("");
-            setTransactionType("");
-        }
-    };
-
     return (
         <div className="modal-background">
             <dialog open className="modal-container">
@@ -85,19 +78,34 @@ export const AddTransactionModal = ({
 
                 <section className="modal-body">
                     <h2 className="modal-title">{displayTransactionType()}</h2>
-                    <form className="modal-form">
+                    <form
+                        method="post"
+                        onSubmit={() => {
+                            handleTransactionSubmit(
+                                newAmount,
+                                newDate,
+                                newIdentifier,
+                                newCategory,
+                                newTransactionType
+                            );
+                            setOpenModal(false);
+                        }}
+                        className="modal-form"
+                    >
                         <section className="amound-and-date">
                             <section className="amound-and-date-section">
                                 <label htmlFor="amount">Amount:</label>
                                 <input
                                     type="number"
-                                    min="0.00"
+                                    min="0"
                                     step="0.01"
                                     id="amount"
                                     name="amount"
-                                    value={amount}
-                                    onChange={onAmountChange}
+                                    value={newAmount}
                                     required
+                                    onChange={(e) =>
+                                        setNewAmount(e.target.value)
+                                    }
                                 />
                             </section>
                             <section className="amound-and-date-section">
@@ -106,9 +114,10 @@ export const AddTransactionModal = ({
                                     type="date"
                                     id="date"
                                     name="date"
-                                    value={date}
-                                    onChange={onDateChange}
+                                    placeholder={Date()}
+                                    value={newDate}
                                     required
+                                    onChange={(e) => setNewDate(e.target.value)}
                                 />
                             </section>
                         </section>
@@ -118,18 +127,21 @@ export const AddTransactionModal = ({
                                 id="identified"
                                 name="identifier"
                                 placeholder={
-                                    transactionType === "expense"
+                                    newTransactionType === "expense"
                                         ? "Where did you spend this?"
                                         : "Where did this money come from?"
                                 }
-                                value={identifier}
-                                onChange={onIdentifierChange}
+                                value={newIdentifier}
                                 required
+                                onChange={(e) =>
+                                    setNewIdentifier(e.target.value)
+                                }
                             />
+
                             <select
-                                value={category}
+                                value={newCategory}
                                 required
-                                onChange={onCategoryChange}
+                                onChange={(e) => setNewCategory(e.target.value)}
                             >
                                 {categories.map((opt: string) => (
                                     <option
@@ -149,7 +161,11 @@ export const AddTransactionModal = ({
                                         name="transactionType"
                                         value="expense"
                                         required
-                                        onChange={onTransactionTypeChange}
+                                        onChange={(e) =>
+                                            setNewTransactionType(
+                                                e.target.value
+                                            )
+                                        }
                                     />{" "}
                                     Expense
                                 </label>
@@ -161,7 +177,11 @@ export const AddTransactionModal = ({
                                         name="transactionType"
                                         value="income"
                                         required
-                                        onChange={onTransactionTypeChange}
+                                        onChange={(e) =>
+                                            setNewTransactionType(
+                                                e.target.value
+                                            )
+                                        }
                                     />{" "}
                                     Income
                                 </label>
@@ -169,18 +189,13 @@ export const AddTransactionModal = ({
                         </section>
                         <section className="modal-buttons">
                             <button
+                                type="reset"
                                 className="btn-cancel"
                                 onClick={() => setOpenModal(false)}
                             >
                                 Cancel
                             </button>
-                            <button
-                                className="btn-submit"
-                                onClick={() => {
-                                    onAddTransaction();
-                                    setOpenModal(false);
-                                }}
-                            >
+                            <button type="submit" className="btn-submit">
                                 {displayTransactionType()}
                             </button>
                         </section>

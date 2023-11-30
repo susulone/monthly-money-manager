@@ -89,10 +89,10 @@
 .search-bar {
     display: flex;
     padding: 12px;
-    /* border: 1px solid red; */
 }
 
 .form-field {
+    width: 100%;
     position: relative;
     display: inline-block;
 }
@@ -107,6 +107,7 @@
 }
 
 .search-bar input {
+    width: 100%;
     color: var(--text-color);
     font-family: var(--primary-font);
     font-size: 1.125rem;
@@ -160,7 +161,7 @@
 .modal-form {
     font-family: var(--primary-font);
     color: var(--text-color);
-    font-size: 18px;
+    font-size: 1.125rem;
 }
 
 .modal-form input,
@@ -171,10 +172,6 @@ select {
     border-radius: 4px;
 }
 
-.modal-form input {
-    border: 1px solid var(--text-color);
-}
-
 .modal-form select {
     color: var(--text-color);
     border: none;
@@ -182,15 +179,6 @@ select {
     outline-offset: -1px;
 }
 
-.modal-form label {
-    font-family: var(--secondary-font);
-    font-size: 0.875rem;
-}
-
-.modal-form label,
-input {
-    display: block;
-}
 .amound-and-date {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -240,6 +228,12 @@ input[type="number"] {
     padding: 6px 6px 2px 6px;
 }
 
+.modal-btn-exit:hover,
+.modal-btn-exit:focus {
+    color: red;
+    background-color: transparent;
+}
+
 .btn-submit,
 .btn-delete,
 .btn-cancel {
@@ -250,6 +244,11 @@ input[type="number"] {
     padding-block: 8px;
 }
 
+.btn-submit:hover,
+.btn-submit:focus {
+    background-color: var(--accent-color);
+}
+
 .btn-delete {
     border: 2px solid red;
     color: red;
@@ -257,8 +256,21 @@ input[type="number"] {
     margin-inline-end: 12px;
 }
 
+.btn-delete:hover,
+.btn-delete:focus {
+    border: 2px solid red;
+    background-color: red;
+    color: white;
+}
+
 .btn-cancel {
     color: var(--accent-color);
     background-color: white;
     margin-inline-end: 12px;
+}
+
+.btn-cancel:hover,
+.btn-cancel:focus {
+    color: var(--accent-color);
+    background-color: white;
 }

@@ -34,19 +34,19 @@ export const PrimaryNavigation = () => {
                     <>
                         <section id="protected-routes">
                             <NavLink
-                                to="user/overview"
+                                to="/overview"
                                 aria-label="Go to overview page"
                             >
                                 <p>Overview</p>
                             </NavLink>
                             <NavLink
-                                to="user/budgets"
+                                to="/budgets"
                                 aria-label="Go to budgets page"
                             >
                                 <p>Budgets</p>
                             </NavLink>
                             <NavLink
-                                to="user/transactions"
+                                to="/transactions"
                                 aria-label="Go to transactions page"
                             >
                                 <p>Transactions</p>

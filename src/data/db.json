@@ -1,55 +1,55 @@
 {
-    "users": [
-        {
-            "id": "user-test-5bc411f4-9c9c-4b3f-b7b7-9705c3716b38"
-        }
-    ],
-    "monthlyBudgets": [
-        {
-            "id": "saas",
-            "budgetPeriod": "2023-11",
-            "userId": "user-test-5bc411f4-9c9c-4b3f-b7b7-9705c3716b38"
-        }
-    ],
-    "plannedIncomes": [
-        {
-            "id": "f68b12f6-ed39-4b3a-999a-90976424215c",
-            "monthlyBudgetId": "saas",
-            "itemName": "November's Pay",
-            "budgetedAmount": 500
-        },
-        {
-            "id": "6ffdce3d-b1a6-47b5-944a-19b22f040455",
-            "monthlyBudgetId": "saas",
-            "itemName": "Side Hustle",
-            "budgetedAmount": 250
-        }
-    ],
-    "transactions": [
-        {
-            "id": 1,
-            "monthlyBudgetId": "saas",
-            "budgetGroup": "",
-            "category": "income",
-            "date": "10-11-2023",
-            "identifier": "November's pay check",
-            "amount": 500,
-            "transactionType": "income"
-        }
-    ],
-    "budgetsGroups": [
-        {
-            "id": 1,
-            "monthlyBudgetId": "saas",
-            "name": "Bills & Subscriptions"
-        }
-    ],
-    "budgetItems": [
-        {
-            "id": 1,
-            "budgetsGroupId": 1,
-            "itemName": "Rent",
-            "budgetedAmount": 500
-        }
-    ]
+  "users": [
+    {
+      "id": "user-test-5bc411f4-9c9c-4b3f-b7b7-9705c3716b38"
+    }
+  ],
+  "monthlyBudgets": [
+    {
+      "id": "saas",
+      "budgetPeriod": "2023-11",
+      "userId": "user-test-5bc411f4-9c9c-4b3f-b7b7-9705c3716b38"
+    }
+  ],
+  "plannedIncomes": [
+    {
+      "id": "f68b12f6-ed39-4b3a-999a-90976424215c",
+      "monthlyBudgetId": "saas",
+      "itemName": "November's Pay",
+      "budgetedAmount": 500
+    },
+    {
+      "id": "6ffdce3d-b1a6-47b5-944a-19b22f040455",
+      "monthlyBudgetId": "saas",
+      "itemName": "Side Hustle",
+      "budgetedAmount": 250
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "monthlyBudgetId": "saas",
+      "budgetGroup": "",
+      "category": "income",
+      "date": "2023-11-10",
+      "identifier": "November's pay check",
+      "amount": 505,
+      "transactionType": "income"
+    }
+  ],
+  "budgetsGroups": [
+    {
+      "id": 1,
+      "monthlyBudgetId": "saas",
+      "name": "Bills & Subscriptions"
+    }
+  ],
+  "budgetItems": [
+    {
+      "id": 1,
+      "budgetsGroupId": 1,
+      "itemName": "Rent",
+      "budgetedAmount": 500
+    }
+  ]
 }

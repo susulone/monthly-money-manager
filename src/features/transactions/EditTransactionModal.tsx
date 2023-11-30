@@ -1,14 +1,34 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
+import { TransactionItemType } from "./TransactionsList";
 import { toTitleCase } from "../../utils/helpers";
 import "./styles.css";
 import { X } from "react-feather";
 
+type EditTransactionModalProps = {
+    transaction: TransactionItemType;
+    handleTransactionEdit: (
+        id: string,
+        budgetGroup: string,
+        category: string,
+        date: string,
+        identifier: string,
+        amount: string,
+        transactionType: string
+    ) => void;
+    handleTransactionDelete: (id: string) => void;
+    setOpenModal: (value: boolean) => void;
+};
+
 export const EditTransactionModal = ({
-    id,
+    transaction,
+    handleTransactionEdit,
+    handleTransactionDelete,
     setOpenModal,
 }: EditTransactionModalProps) => {
+    // FIX THIS
     const [category, setCategory] = useState("groceries");
     const categories = [
+        "income",
         "groceries",
         "rent",
         "internet",
@@ -18,6 +38,23 @@ export const EditTransactionModal = ({
         "emergency fund",
         "medicine",
     ];
+
+    const [editTransactionAmount, setEditTransactionAmount] = useState(
+        transaction.amount.toString()
+    );
+    const [editTransactionDate, setEditTransactionDate] = useState(
+        transaction.date
+    );
+    const [editTransactionIdentifier, setEditTransactionIdentifier] = useState(
+        transaction.identifier
+    );
+    const [editTransactionTransactionType, setEditTransactionTransactionType] =
+        useState(transaction.transactionType);
+    const [editTransactionCategory, setEditTransactionCategory] = useState(
+        transaction.category
+    );
+    const [editTransactionBudgetGroup, setEditTransactionBudgetGroup] =
+        useState(transaction.budgetGroup);
 
     return (
         <div className="modal-background">
@@ -33,8 +70,22 @@ export const EditTransactionModal = ({
 
                 <section className="modal-body">
                     <h2 className="modal-title">Edit Transaction</h2>
-                    <form className="modal-form">
-                        <p>{id}</p>
+                    <form
+                        method="post"
+                        className="modal-form"
+                        onSubmit={() => {
+                            handleTransactionEdit(
+                                transaction.id,
+                                editTransactionBudgetGroup,
+                                editTransactionCategory,
+                                editTransactionDate,
+                                editTransactionIdentifier,
+                                editTransactionAmount,
+                                editTransactionTransactionType
+                            );
+                            setOpenModal(false);
+                        }}
+                    >
                         <section className="amound-and-date">
                             <section className="amound-and-date-section">
                                 <label htmlFor="amount">Amount:</label>
@@ -44,12 +95,25 @@ export const EditTransactionModal = ({
                                     step="0.01"
                                     id="amount"
                                     name="amount"
+                                    value={editTransactionAmount}
                                     required
+                                    onChange={(e) =>
+                                        setEditTransactionAmount(e.target.value)
+                                    }
                                 />
                             </section>
                             <section className="amound-and-date-section">
                                 <label htmlFor="date">Date:</label>
-                                <input type="date" id="date" name="date" />
+                                <input
+                                    type="date"
+                                    id="date"
+                                    name="date"
+                                    value={editTransactionDate}
+                                    required
+                                    onChange={(e) =>
+                                        setEditTransactionDate(e.target.value)
+                                    }
+                                />
                             </section>
                         </section>
                         <section className="select-and-identify">
@@ -58,12 +122,19 @@ export const EditTransactionModal = ({
                                 id="identified"
                                 name="identifier"
                                 placeholder="Where did you spend this?"
+                                value={editTransactionIdentifier}
                                 required
+                                onChange={(e) =>
+                                    setEditTransactionIdentifier(e.target.value)
+                                }
                             />
                             <select
-                                value={category}
+                                value={editTransactionCategory}
                                 required
-                                onChange={(e) => setCategory(e.target.value)}
+                                onChange={(e) =>
+                                    setEditTransactionCategory(e.target.value)
+                                }
+                                className="modal-select"
                             >
                                 {categories.map((opt: string) => (
                                     <option
@@ -75,6 +146,7 @@ export const EditTransactionModal = ({
                                 ))}
                             </select>
                         </section>
+                        {/* FIX THIS */}
                         <section className="radio-buttons">
                             <section className="radio-button-section">
                                 <label>
@@ -82,6 +154,11 @@ export const EditTransactionModal = ({
                                         type="radio"
                                         name="transactionType"
                                         value="income"
+                                        onChange={(e) =>
+                                            setEditTransactionTransactionType(
+                                                e.target.value
+                                            )
+                                        }
                                     />{" "}
                                     Income
                                 </label>
@@ -92,13 +169,26 @@ export const EditTransactionModal = ({
                                         type="radio"
                                         name="transactionType"
                                         value="expense"
+                                        onChange={(e) =>
+                                            setEditTransactionTransactionType(
+                                                e.target.value
+                                            )
+                                        }
                                     />{" "}
                                     Expense
                                 </label>
                             </section>
                         </section>
                         <section className="modal-buttons">
-                            <button className="btn-delete">
+                            <button
+                                type="button"
+                                className="btn-delete"
+                                onClick={() => {
+                                    handleTransactionDelete(transaction.id);
+                                    setOpenModal(false);
+                                    console.log("Delete Clicked");
+                                }}
+                            >
                                 Delete Transaction
                             </button>
                             <button className="btn-submit">

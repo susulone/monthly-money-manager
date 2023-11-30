@@ -24,7 +24,7 @@ import OverviewPage, {
     overviewLoader,
 } from "./features/overview/OverviewPage.tsx";
 import { BudgetsPage } from "./features/budgets/BudgetsPage.tsx";
-// import { TransactionsPage } from "./features/transactions/TransactionsPage.tsx";
+import { TransactionsPage } from "./features/transactions/TransactionsPage.tsx";
 import { RegisterPage } from "./features/users/RegisterPage.tsx";
 import LoginPage, { loginLoader } from "./features/users/LoginPage.tsx";
 
@@ -75,12 +75,12 @@ const router = createBrowserRouter([
                 // loader: budgetsPageLoader,
                 errorElement: <ErrorPage />,
             },
-            // {
-            //     path: "/transactions",
-            //     element: <TransactionsPage />,
-            //     // loader: transactionsPageLoader,
-            //     errorElement: <ErrorPage />,
-            // },
+            {
+                path: "/transactions",
+                element: <TransactionsPage />,
+                // loader: transactionsPageLoader,
+                errorElement: <ErrorPage />,
+            },
         ],
     },
 ]);
