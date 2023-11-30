@@ -2,34 +2,15 @@ import { Form } from "react-router-dom";
 import "../transactions/styles.css";
 import "./styles.css";
 import { X } from "react-feather";
-import { useGlobalState } from "../../app/hooks/useGlobalState";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { UserContext } from "../../app/context/UserContext";
-import axios from "axios";
 
 type AddIncomeModalProps = {
     setOpenModal: (value: boolean) => void;
 };
 
 export const AddIncomeModal = ({ setOpenModal }: AddIncomeModalProps) => {
-    const [errorMsg, setErrorMsg] = useState<string | null>(null);
-    const { baseURL } = useGlobalState();
     const { user } = useContext(UserContext);
-
-    const addIncome = async (itemName: string, budgetAmount: number) => {
-        try {
-            const response = await axios.post(`${baseURL}/${user.id}`, {
-                id: crypto.randomUUID(),
-                itemName,
-                budgetAmount,
-            });
-        } catch (err) {
-            if (axios.isCancel(err)) {
-                console.log("Fetch Aborted");
-                return;
-            }
-        }
-    };
 
     return (
         <div className="modal-background">

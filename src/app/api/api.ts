@@ -1,9 +1,11 @@
 import axios from "axios";
 import { formattedDate } from "../../utils/helpers";
 
+const baseURL = `http://localhost:3000/users`;
+
 export const addUser = async (user_id: string) => {
     try {
-        const dbResponse = await axios.post("http://localhost:3000/users", {
+        const dbResponse = await axios.post(baseURL, {
             id: user_id,
             monthlyBudgets: [
                 {

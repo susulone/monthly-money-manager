@@ -19,7 +19,6 @@ export const IncomeAccordion = () => {
     const [openModal, setOpenModal] = useState(false);
 
     let totalPlannedIncome = 0;
-
     const incomes = user.monthlyBudgets[0].plannedIncomes;
 
     const addIncome = async (itemName: string, budgetAmount: number) => {
