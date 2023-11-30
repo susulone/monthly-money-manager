@@ -1,17 +1,24 @@
-import { Form } from "react-router-dom";
+import { X } from "react-feather";
 import "../transactions/styles.css";
 import "./styles.css";
-import { X } from "react-feather";
-import { useContext } from "react";
-import { UserContext } from "../../app/context/UserContext";
 
 type AddIncomeModalProps = {
+    newIncomeSource: string;
+    setNewIncomeSource: (newIncomeSource: string) => void;
+    newIncomeAmount: string;
+    setNewIncomeAmount: (newIncomeAmount: string) => void;
+    handleIncomeSubmit: (itemName: string, budgetedAmount: string) => void;
     setOpenModal: (value: boolean) => void;
 };
 
-export const AddIncomeModal = ({ setOpenModal }: AddIncomeModalProps) => {
-    const { user } = useContext(UserContext);
-
+export const AddIncomeModal = ({
+    setOpenModal,
+    newIncomeSource,
+    setNewIncomeSource,
+    newIncomeAmount,
+    setNewIncomeAmount,
+    handleIncomeSubmit,
+}: AddIncomeModalProps) => {
     return (
         <div className="modal-background">
             <dialog open className="modal-container">
@@ -30,6 +37,10 @@ export const AddIncomeModal = ({ setOpenModal }: AddIncomeModalProps) => {
                         method="post"
                         className="modal-form"
                         onSubmit={() => {
+                            handleIncomeSubmit(
+                                newIncomeSource,
+                                newIncomeAmount
+                            );
                             setOpenModal(false);
                         }}
                     >
@@ -42,6 +53,10 @@ export const AddIncomeModal = ({ setOpenModal }: AddIncomeModalProps) => {
                                 name="itemName"
                                 id="newIncome"
                                 placeholder="e.g., Side Hustle"
+                                value={newIncomeSource}
+                                onChange={(e) =>
+                                    setNewIncomeSource(e.target.value)
+                                }
                                 required
                                 className="form-input full-width"
                             />
@@ -60,6 +75,10 @@ export const AddIncomeModal = ({ setOpenModal }: AddIncomeModalProps) => {
                                 name="budgetedAmount"
                                 id="newIncomeAmount"
                                 placeholder="e.g., 300€"
+                                value={newIncomeAmount}
+                                onChange={(e) =>
+                                    setNewIncomeAmount(e.target.value)
+                                }
                                 required
                                 inputMode="decimal"
                                 className="form-input full-width"

@@ -8,7 +8,7 @@ export const formattedDate = () => {
     const currentDate = new Date();
     let formattedDate = "";
     formattedDate = currentDate.getFullYear().toString();
-    formattedDate += "/";
+    formattedDate += "-";
     formattedDate += currentDate.getMonth() + 1;
     return formattedDate;
 };

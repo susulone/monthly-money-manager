@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./styles.css";
 import { Header } from "../../common/components/Header/Header";
 import { IncomeAccordion } from "./IncomeAccordion";
 import { useLoaderData } from "react-router-dom";
 import { LoaderWheel } from "../../common/components/Loader/Loader";
 import { useGlobalState } from "../../app/hooks/useGlobalState";
+import { UserContext } from "../../app/context/UserContext";
 
 export const overviewAction = async ({ request }) => {
     const data = await request.formData();
@@ -36,6 +37,8 @@ export const overviewLoader = () => {};
 // };
 
 const OverviewPage = () => {
+    const { user } = useContext(UserContext);
+    console.log(user);
     // const { monthlyBudgets } = useLoaderData();
     const { isLoading } = useGlobalState();
     return (

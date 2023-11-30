@@ -1,30 +1,36 @@
 import { useState } from "react";
 import { IconButton } from "../../common/components/IconButton/IconButton";
-import { PlannedIncome } from "../../app/context/UserContext";
 import "./styles.css";
 
-type IncomeItemProps = {
+export type IncomeItem = {
     id: string;
+    monthlyBudgetId: string;
     itemName: string;
     budgetedAmount: number;
-    handleIncomeEdit: () => void;
+};
+
+type IncomeItemProps = {
+    income: IncomeItem;
+    handleIncomeEdit: (
+        id: string,
+        editIncomeSource: string,
+        editIncomeAmount: string
+    ) => void;
     handleIncomeDelete: (id: string) => void;
 };
 
 export const IncomeItem = ({
-    id,
-    itemName,
-    budgetedAmount,
+    income,
     handleIncomeEdit,
     handleIncomeDelete,
 }: IncomeItemProps) => {
-    const [calculatedAmount, setCalculatedAmount] = useState(0);
     const [receivedAmount, setReceivedAmount] = useState(0);
 
     const [editMode, setEditMode] = useState(false);
-    const [editIncomeSource, setEditIncomeSource] = useState(itemName);
+
+    const [editIncomeSource, setEditIncomeSource] = useState(income.itemName);
     const [editIncomeAmount, setEditIncomeAmount] = useState(
-        budgetedAmount.toString()
+        income.budgetedAmount.toString()
     );
     return (
         <section className="income-item-wrapper">
@@ -56,6 +62,12 @@ export const IncomeItem = ({
                     <IconButton
                         iconName={"save"}
                         handleOnClick={() => {
+                            handleIncomeEdit(
+                                income.id,
+                                editIncomeSource,
+                                editIncomeAmount
+                            );
+                            setEditMode(false);
                             console.log("Save Clicked");
                         }}
                     />
@@ -66,10 +78,10 @@ export const IncomeItem = ({
                         id="income-item-identifier"
                         className="income-item-field"
                     >
-                        {itemName}
+                        {income.itemName}
                     </section>
                     <section className="income-item-field">
-                        {budgetedAmount}
+                        {income.budgetedAmount}
                     </section>
                     <section className="income-item-field">
                         {receivedAmount}
@@ -83,7 +95,7 @@ export const IncomeItem = ({
             <IconButton
                 iconName={"delete"}
                 handleOnClick={() => {
-                    handleIncomeDelete(id);
+                    handleIncomeDelete(income.id);
                     console.log("Delete Clicked");
                 }}
             />

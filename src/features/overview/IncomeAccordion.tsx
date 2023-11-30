@@ -1,59 +1,141 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import "./styles.css";
-import { ChevronDown, ChevronUp } from "react-feather";
-import { AddButton } from "../../common/components/AddButton/AddButton";
-import { IncomeItem } from "./IncomeItem";
+
+// Components
 import { AddIncomeModal } from "./AddIncomeModal";
-import { UserContext, PlannedIncome } from "../../app/context/UserContext";
+import { IncomeItem } from "./IncomeItem";
+import { AddButton } from "../../common/components/AddButton/AddButton";
+import { ChevronDown, ChevronUp } from "react-feather";
+
+// Context
+import { UserContext } from "../../app/context/UserContext";
 import { useGlobalState } from "../../app/hooks/useGlobalState";
 
 export const IncomeAccordion = () => {
-    const { user } = useContext(UserContext);
     const { baseURL } = useGlobalState();
+    const { user } = useContext(UserContext);
+
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
     // Accordion states
-    const [isEmpty, setIsEmpty] = useState<boolean>(false);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [openModal, setOpenModal] = useState(false);
 
-    let totalPlannedIncome = 0;
-    const incomes = user.monthlyBudgets[0].plannedIncomes;
+    const [incomes, setIncomes] = useState([]);
+    const [newIncomeSource, setNewIncomeSource] = useState("");
+    const [newIncomeAmount, setNewIncomeAmount] = useState("");
 
-    const addIncome = async (itemName: string, budgetAmount: number) => {
+    let totalPlannedIncome = 0;
+
+    const getIncomesForMonthlyBudget = async (monthlyBudgetId: string) => {
         try {
-            const response = await axios.post(`${baseURL}/${user.id}`, {
-                id: crypto.randomUUID(),
-                itemName,
-                budgetAmount,
+            const response = await axios.get(`${baseURL}/plannedIncomes`, {
+                params: {
+                    monthlyBudgetId,
+                },
             });
+            const data = await response.data;
+
+            setIncomes(data);
+            console.log(data);
+            setErrorMsg(null);
         } catch (err) {
             if (axios.isCancel(err)) {
                 console.log("Fetch Aborted");
                 return;
             }
+            if (err instanceof Error) {
+                setErrorMsg(err.message);
+            }
         }
     };
 
-    const removeIncome = async (id: string) => {
+    const addIncome = async (itemName: string, budgetedAmount: string) => {
+        try {
+            const dbResponse = await axios.post(`${baseURL}/plannedIncomes`, {
+                id: crypto.randomUUID(),
+                monthlyBudgetId: user.monthlyBudgetIds[0],
+                itemName,
+                budgetedAmount: Number(budgetedAmount),
+            });
+            console.log(dbResponse);
+            return dbResponse;
+        } catch (err) {
+            if (err instanceof Error) {
+                console.log(err.message);
+            }
+        } finally {
+            setNewIncomeSource("");
+            setNewIncomeAmount("");
+            getIncomesForMonthlyBudget(user.monthlyBudgetIds[0]);
+        }
+    };
+
+    const handleIncomeSubmit = (itemName: string, budgetedAmount: string) => {
+        addIncome(itemName, budgetedAmount);
+    };
+
+    const deleteIncome = async (id: string | number) => {
         try {
             const response = await axios.delete(
-                `http://localhost:3001/notes/${id}`
+                `${baseURL}/plannedIncomes/${id}`
             );
             console.log(response);
+            setErrorMsg(null);
+        } catch (err) {
+            if (err instanceof Error) {
+                setErrorMsg(err.message);
+            }
+        } finally {
+            getIncomesForMonthlyBudget(user.monthlyBudgetIds[0]);
+        }
+    };
+
+    const handleIncomeDelete = (id: string | number) => {
+        deleteIncome(id);
+    };
+
+    const editIncome = async (
+        id: string,
+        itemName: string,
+        budgetedAmount: string
+    ) => {
+        try {
+            const response = await axios.put(
+                `${baseURL}/plannedIncomes/${id}`,
+                {
+                    id,
+                    monthlyBudgetId: user.monthlyBudgetIds[0],
+                    itemName,
+                    budgetedAmount: Number(budgetedAmount),
+                }
+            );
+            console.log(response.data);
             setErrorMsg(null);
         } catch (error) {
             if (error instanceof Error) {
                 setErrorMsg(error.message);
             }
         } finally {
-            setIsLoading(false);
-            // fetchNotes();
+            // setIsLoading(false);
+            getIncomesForMonthlyBudget(user.monthlyBudgetIds[0]);
         }
     };
 
-    const handleIncomeDelete = () => {};
+    const handleIncomeEdit = (
+        id: string,
+        itemName: string,
+        budgetedAmount: string
+    ) => {
+        editIncome(id, itemName, budgetedAmount);
+    };
+
+    useEffect(() => {
+        getIncomesForMonthlyBudget(user.monthlyBudgetIds[0]);
+    }, []);
+
+    console.log("incomes:", incomes);
 
     return (
         <section id="accordion">
@@ -86,48 +168,57 @@ export const IncomeAccordion = () => {
                                 <em>There's no content yet...</em>
                             </section>
                         ) : (
-                            incomes.map((income: PlannedIncome) => {
-                                totalPlannedIncome += income.budgetedAmount;
+                            incomes.map((income: IncomeItem) => {
+                                totalPlannedIncome += Number(
+                                    income.budgetedAmount
+                                );
+
+                                console.log(totalPlannedIncome);
                                 return (
                                     <>
                                         <IncomeItem
-                                            key={crypto.randomUUID()}
-                                            id={income.id}
-                                            itemName={income.itemName}
-                                            budgetedAmount={
-                                                income.budgetedAmount
-                                            }
+                                            key={income.id}
+                                            income={income}
                                             handleIncomeEdit={handleIncomeEdit}
-                                            handleIncomeDelete={() =>
-                                                handleIncomeDelete(income.id)
+                                            handleIncomeDelete={
+                                                handleIncomeDelete
                                             }
                                         />
-                                        <section id="table-footer">
-                                            <section className="table-footer-column">
-                                                <AddButton
-                                                    btnText="Add Income"
-                                                    handleOnClick={() =>
-                                                        setOpenModal(true)
-                                                    }
-                                                />
-                                            </section>
-                                            <section className="table-footer-column">
-                                                {totalPlannedIncome}€
-                                            </section>
-                                            <section className="table-footer-column">
-                                                0€
-                                            </section>
-                                        </section>
                                     </>
                                 );
                             })
                         )}
+                        <section id="table-footer">
+                            <section className="table-footer-column">
+                                <AddButton
+                                    btnText="Add Income"
+                                    handleOnClick={() => setOpenModal(true)}
+                                />
+                            </section>
+                            <section className="table-footer-column">
+                                {totalPlannedIncome}€
+                            </section>
+                            <section className="table-footer-column">
+                                0€
+                            </section>
+                        </section>
                     </section>
                 </section>
             ) : (
                 <></>
             )}
-            {openModal ? <AddIncomeModal setOpenModal={setOpenModal} /> : <></>}
+            {openModal ? (
+                <AddIncomeModal
+                    setOpenModal={setOpenModal}
+                    newIncomeSource={newIncomeSource}
+                    setNewIncomeSource={setNewIncomeSource}
+                    newIncomeAmount={newIncomeAmount}
+                    setNewIncomeAmount={setNewIncomeAmount}
+                    handleIncomeSubmit={handleIncomeSubmit}
+                />
+            ) : (
+                <></>
+            )}
         </section>
     );
 };

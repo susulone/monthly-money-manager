@@ -1,27 +1,12 @@
-import {
-    createContext,
-    Dispatch,
-    ReactNode,
-    SetStateAction,
-    useState,
-} from "react";
-
-// export interface IGlobalState {
-//     isLoading?: boolean;
-//     loggedIn?: boolean;
-// }
-
-// export const GlobalStateContext = createContext({
-//     state: {} as Partial<IGlobalState>,
-//     setState: {} as Dispatch<SetStateAction<Partial<IGlobalState>>>,
-// });
+import { createContext, ReactNode, useState } from "react";
 
 export const GlobalStateContext = createContext({});
 
 const GlobalStateProvider = ({ children }: { children: ReactNode }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [userLoggedIn, setUserLoggedIn] = useState(false);
-    const baseURL = `http://localhost:3000/users`;
+
+    const baseURL = `http://localhost:3000`;
 
     return (
         <GlobalStateContext.Provider

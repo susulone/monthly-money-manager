@@ -8,30 +8,7 @@ import {
 
 export type User = {
     id: string;
-    monthlyBudgets: MonthlyBudget[];
-};
-
-export type MonthlyBudget = {
-    budgetPeriod: string;
-    budgets: [];
-    transactions: Transaction[];
-    plannedIncomes: PlannedIncome[];
-};
-
-export type Transaction = {
-    id: string;
-    budgetGroup: string;
-    category: string;
-    date: string;
-    identifier: string;
-    amount: number;
-    transactionType: "income" | "expense";
-};
-
-export type PlannedIncome = {
-    id: string;
-    itemName: string;
-    budgetedAmount: number;
+    monthlyBudgetIds: string[];
 };
 
 interface IUserContext {
@@ -42,7 +19,7 @@ interface IUserContext {
 const defaultState = {
     user: {
         id: "",
-        monthlyBudgets: [],
+        monthlyBudgetIds: [],
     },
     setUser: (user: User) => {},
 } as IUserContext;
@@ -56,7 +33,7 @@ type UserProviderProps = {
 const UserProvider = ({ children }: UserProviderProps) => {
     const [user, setUser] = useState<User>({
         id: "",
-        monthlyBudgets: [],
+        monthlyBudgetIds: [],
     });
 
     return (
