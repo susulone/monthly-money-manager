@@ -5,6 +5,7 @@ import { LoginForm } from "./LoginForm";
 
 export const loginLoader = () => {
     console.log("loginLoader ran");
+    return null;
 };
 
 const LoginPage = () => {

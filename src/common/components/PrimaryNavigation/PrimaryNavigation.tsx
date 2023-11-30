@@ -1,5 +1,5 @@
 import "./styles.css";
-// import { useContext } from "react";
+import { useEffect } from "react";
 import { useStytch } from "@stytch/react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Logo } from "./Logo";
@@ -19,6 +19,7 @@ export const PrimaryNavigation = () => {
         // setIsLoading(true);
         navigate("/");
     };
+
     return (
         <nav id="primary-nav">
             <NavLink to="/" aria-label="Go to home page" id="nav-logo">
@@ -33,19 +34,19 @@ export const PrimaryNavigation = () => {
                     <>
                         <section id="protected-routes">
                             <NavLink
-                                to="overview"
+                                to="user/overview"
                                 aria-label="Go to overview page"
                             >
                                 <p>Overview</p>
                             </NavLink>
                             <NavLink
-                                to="budgets"
+                                to="user/budgets"
                                 aria-label="Go to budgets page"
                             >
                                 <p>Budgets</p>
                             </NavLink>
                             <NavLink
-                                to="transactions"
+                                to="user/transactions"
                                 aria-label="Go to transactions page"
                             >
                                 <p>Transactions</p>

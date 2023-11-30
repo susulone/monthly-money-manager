@@ -6,7 +6,7 @@ import "./styles.css";
 // Context
 import { UserContext } from "../../app/context/UserContext";
 import { useGlobalState } from "../../app/hooks/useGlobalState";
-import { addUser } from "../../app/api/api";
+import { addUser, addMonthlyBudget } from "../../app/api/api";
 
 export const RegisterForm = () => {
     const navigate = useNavigate();
@@ -22,9 +22,6 @@ export const RegisterForm = () => {
     const [warningMsg, setWarningMsg] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
-    /**
-     *
-     */
     const signUp = async () => {
         try {
             const response = await stytchClient.passwords.strengthCheck({
@@ -41,10 +38,21 @@ export const RegisterForm = () => {
                     password,
                     session_duration_minutes: 60,
                 });
-                // Creates user object with matching id in the db
-                const dbResponse = await addUser(stytchResponse.user_id);
-                if (dbResponse.status === 201) {
-                    setUser(dbResponse.data);
+                // Create New User
+                const userResponse = await addUser(stytchResponse.user_id);
+                // Create New MonthlyBudget for the user
+                const budgetResponse = await addMonthlyBudget(
+                    stytchResponse.user_id
+                );
+                if (
+                    userResponse.status === 201 &&
+                    budgetResponse.status === 201
+                ) {
+                    setUser({
+                        id: userResponse?.data.id,
+                        monthlyBudgetIds: [budgetResponse?.data.id],
+                    });
+
                     setUserLoggedIn(true);
                     setIsLoading(false);
                     setErrorMessage("");

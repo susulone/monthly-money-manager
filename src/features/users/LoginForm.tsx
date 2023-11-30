@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useState, useContext } from "react";
-import { useStytch } from "@stytch/react";
 import { Link, useNavigate } from "react-router-dom";
+import { useStytch } from "@stytch/react";
+import { getUsersMonthlyBudgets } from "../../app/api/api";
 import "./styles.css";
 
 // Context
@@ -26,23 +26,22 @@ export const LoginForm = () => {
                 password,
                 session_duration_minutes: 60,
             })
-            .then((stytchResponse) =>
-                axios.get(
-                    `http://localhost:3000/users/${stytchResponse.user_id}`
-                )
-            )
+            .then((stytchResponse) => {
+                const result = getUsersMonthlyBudgets(stytchResponse.user_id);
+                return result;
+            })
             .then((dbResponse) => {
-                setUser(dbResponse.data);
+                if (dbResponse !== undefined) {
+                    setUser({
+                        id: dbResponse.data[0].userId,
+                        monthlyBudgetIds: [dbResponse.data[0].id],
+                    });
+                }
                 setUserLoggedIn(true);
                 setIsLoading(false);
                 setErrorMsg("");
-                console.log(dbResponse.data);
             })
             .catch((err) => {
-                if (axios.isCancel(err)) {
-                    console.log("Fetch Aborted");
-                    return;
-                }
                 if (err instanceof Error) {
                     setErrorMsg(err.message);
                 }
