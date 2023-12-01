@@ -48,8 +48,9 @@ export const EditTransactionModal = ({
     const [editTransactionIdentifier, setEditTransactionIdentifier] = useState(
         transaction.identifier
     );
-    const [editTransactionTransactionType, setEditTransactionTransactionType] =
-        useState(transaction.transactionType);
+    const [editTransactionType, setEditTransactionType] = useState(
+        transaction.transactionType
+    );
     const [editTransactionCategory, setEditTransactionCategory] = useState(
         transaction.category
     );
@@ -81,7 +82,7 @@ export const EditTransactionModal = ({
                                 editTransactionDate,
                                 editTransactionIdentifier,
                                 editTransactionAmount,
-                                editTransactionTransactionType
+                                editTransactionType
                             );
                             setOpenModal(false);
                         }}
@@ -153,14 +154,17 @@ export const EditTransactionModal = ({
                                     <input
                                         type="radio"
                                         name="transactionType"
-                                        value="income"
+                                        checked={
+                                            editTransactionType === "expense"
+                                        }
+                                        value="expense"
                                         onChange={(e) =>
-                                            setEditTransactionTransactionType(
+                                            setEditTransactionType(
                                                 e.target.value
                                             )
                                         }
                                     />{" "}
-                                    Income
+                                    Expense
                                 </label>
                             </section>
                             <section className="radio-button-section">
@@ -168,14 +172,17 @@ export const EditTransactionModal = ({
                                     <input
                                         type="radio"
                                         name="transactionType"
-                                        value="expense"
+                                        checked={
+                                            editTransactionType === "income"
+                                        }
+                                        value="income"
                                         onChange={(e) =>
-                                            setEditTransactionTransactionType(
+                                            setEditTransactionType(
                                                 e.target.value
                                             )
                                         }
                                     />{" "}
-                                    Expense
+                                    Income
                                 </label>
                             </section>
                         </section>

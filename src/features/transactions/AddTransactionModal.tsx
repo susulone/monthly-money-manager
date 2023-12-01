@@ -4,23 +4,23 @@ import "./styles.css";
 
 type AddTransactionModalProps = {
     newAmount: string;
-    setNewAmount: (amount: string) => void;
+    setNewAmount: (newAmount: string) => void;
     newDate: string;
-    setNewDate: (date: string) => void;
+    setNewDate: (newDate: string) => void;
     newIdentifier: string;
-    setNewIdentifier: (identifier: string) => void;
+    setNewIdentifier: (newIdentifier: string) => void;
     newCategory: string;
-    setNewCategory: (category: string) => void;
+    setNewCategory: (newCategory: string) => void;
     newBudgetGroup: string;
-    setNewBudgetGroup: (budgetGroup: string) => void;
+    setNewBudgetGroup: (newBudgetGroup: string) => void;
     newTransactionType: string;
-    setNewTransactionType: (transactionType: string) => void;
+    setNewTransactionType: (newTransactionType: string) => void;
     handleTransactionSubmit: (
-        amount: string,
-        date: string,
-        identifier: string,
-        category: string,
-        transactionType: string
+        newAmount: string,
+        newDate: string,
+        newIdentifier: string,
+        newCategory: string,
+        newTransactionType: string
     ) => void;
     setOpenModal: (value: boolean) => void;
 };
@@ -40,8 +40,6 @@ export const AddTransactionModal = ({
     handleTransactionSubmit,
     setOpenModal,
 }: AddTransactionModalProps) => {
-    // const dispatch = useAppDispatch();
-
     // These need to be fetched
     const categories = [
         "groceries",
@@ -54,6 +52,13 @@ export const AddTransactionModal = ({
         "medicine",
         "income",
     ];
+    const handleCancel = () => {
+        setNewAmount("");
+        setNewDate("");
+        setNewIdentifier("");
+        setNewCategory("");
+        setNewTransactionType("expense");
+    };
 
     const displayTransactionType = () => {
         if (newTransactionType !== null) {
@@ -70,7 +75,10 @@ export const AddTransactionModal = ({
                 <section className="modal-heading">
                     <button
                         className="modal-btn-exit"
-                        onClick={() => setOpenModal(false)}
+                        onClick={() => {
+                            handleCancel();
+                            setOpenModal(false);
+                        }}
                     >
                         <X size={18} />
                     </button>
@@ -80,6 +88,7 @@ export const AddTransactionModal = ({
                     <h2 className="modal-title">{displayTransactionType()}</h2>
                     <form
                         method="post"
+                        className="modal-form"
                         onSubmit={() => {
                             handleTransactionSubmit(
                                 newAmount,
@@ -90,22 +99,23 @@ export const AddTransactionModal = ({
                             );
                             setOpenModal(false);
                         }}
-                        className="modal-form"
                     >
                         <section className="amound-and-date">
                             <section className="amound-and-date-section">
                                 <label htmlFor="amount">Amount:</label>
                                 <input
                                     type="number"
-                                    min="0"
-                                    step="0.01"
+                                    min={0}
+                                    step={0.01}
                                     id="amount"
                                     name="amount"
+                                    placeholder="e.g., 300€"
                                     value={newAmount}
-                                    required
                                     onChange={(e) =>
                                         setNewAmount(e.target.value)
                                     }
+                                    required
+                                    inputMode="decimal"
                                 />
                             </section>
                             <section className="amound-and-date-section">
@@ -114,10 +124,9 @@ export const AddTransactionModal = ({
                                     type="date"
                                     id="date"
                                     name="date"
-                                    placeholder={Date()}
                                     value={newDate}
-                                    required
                                     onChange={(e) => setNewDate(e.target.value)}
+                                    required
                                 />
                             </section>
                         </section>
@@ -132,16 +141,16 @@ export const AddTransactionModal = ({
                                         : "Where did this money come from?"
                                 }
                                 value={newIdentifier}
-                                required
                                 onChange={(e) =>
                                     setNewIdentifier(e.target.value)
                                 }
+                                required
                             />
 
                             <select
                                 value={newCategory}
-                                required
                                 onChange={(e) => setNewCategory(e.target.value)}
+                                required
                             >
                                 {categories.map((opt: string) => (
                                     <option
@@ -160,12 +169,15 @@ export const AddTransactionModal = ({
                                         type="radio"
                                         name="transactionType"
                                         value="expense"
-                                        required
+                                        checked={
+                                            newTransactionType === "expense"
+                                        }
                                         onChange={(e) =>
                                             setNewTransactionType(
                                                 e.target.value
                                             )
                                         }
+                                        required
                                     />{" "}
                                     Expense
                                 </label>
@@ -175,13 +187,16 @@ export const AddTransactionModal = ({
                                     <input
                                         type="radio"
                                         name="transactionType"
+                                        checked={
+                                            newTransactionType === "income"
+                                        }
                                         value="income"
-                                        required
                                         onChange={(e) =>
                                             setNewTransactionType(
                                                 e.target.value
                                             )
                                         }
+                                        required
                                     />{" "}
                                     Income
                                 </label>
@@ -191,7 +206,10 @@ export const AddTransactionModal = ({
                             <button
                                 type="reset"
                                 className="btn-cancel"
-                                onClick={() => setOpenModal(false)}
+                                onClick={() => {
+                                    handleCancel();
+                                    setOpenModal(false);
+                                }}
                             >
                                 Cancel
                             </button>
