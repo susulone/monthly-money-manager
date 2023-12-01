@@ -25,7 +25,11 @@ export const AddIncomeModal = ({
                 <section className="modal-heading">
                     <button
                         className="modal-btn-exit"
-                        onClick={() => setOpenModal(false)}
+                        onClick={() => {
+                            setNewIncomeAmount("");
+                            setNewIncomeAmount("");
+                            setOpenModal(false);
+                        }}
                     >
                         <X size={18} />
                     </button>
@@ -88,7 +92,11 @@ export const AddIncomeModal = ({
                         <section className="modal-buttons">
                             <button
                                 type="reset"
-                                onClick={() => setOpenModal(false)}
+                                onClick={() => {
+                                    setNewIncomeAmount("");
+                                    setNewIncomeAmount("");
+                                    setOpenModal(false);
+                                }}
                                 className="btn-cancel"
                             >
                                 Cancel

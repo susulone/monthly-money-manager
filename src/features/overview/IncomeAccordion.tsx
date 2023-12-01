@@ -135,8 +135,6 @@ export const IncomeAccordion = () => {
         getIncomesForMonthlyBudget(user.monthlyBudgetIds[0]);
     }, []);
 
-    console.log("incomes:", incomes);
-
     return (
         <section id="accordion">
             <header

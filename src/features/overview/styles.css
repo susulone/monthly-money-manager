@@ -114,3 +114,47 @@
 .full-width {
     width: 100%;
 }
+
+/* BUDGET LIST */
+
+.budget-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding-inline: 24px;
+}
+
+/* BUDGET GROUP BUTTON */
+
+.budget-group-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #79cca2;
+    padding-block: 12px;
+    padding-inline: 24px;
+    margin-block-start: 16px;
+}
+
+.budget-group-title {
+    margin: 0;
+    font-family: var(--primary-font);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--accent-color);
+}
+
+/* ADD GROUP */
+#button-placement {
+    display: flex;
+    flex-direction: row;
+    margin-block-start: 16px;
+    margin-inline: 24px;
+    justify-content: flex-end;
+}
+
+#button-placement button {
+    margin-inline: 0;
+    width: fit-content;
+}
