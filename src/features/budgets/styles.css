@@ -1,0 +1,62 @@
+/* BUDGET ITEM */
+
+.budget-item-wrapper {
+    display: grid;
+    grid-template-columns: 3.5fr 1.5fr 1.5fr 52px 52px;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+}
+
+/* .budget-item-field {}
+
+#budget-item-identifier {} */
+
+/*  BUDGET GROUP */
+
+#budget-group {
+    display: flex;
+    flex-direction: column;
+    padding-inline: 24px;
+}
+
+.budget-group-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #79cca2;
+    padding-block: 8px;
+    padding-inline: 24px;
+}
+
+#budget-group-title {
+    margin: 0;
+    font-family: var(--primary-font);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--accent-color);
+}
+
+/* BUDGET LIST WRAPPER */
+.budget-item-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding-inline: 24px;
+    border: 1px solid red;
+}
+
+/* ADD GROUP ITEM */
+#add-button-placement {
+    display: flex;
+    flex-direction: row;
+    margin-block: 16px;
+    /* margin-inline: 24px; */
+    justify-content: right;
+}
+
+#add-button-placement button {
+    margin-inline: 0;
+    width: fit-content;
+}
