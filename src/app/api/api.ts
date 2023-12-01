@@ -89,31 +89,6 @@ export const getUsersMonthlyBudgets = (user_id: string) => {
 //     }
 // };
 
-export const addIncome = async (
-    monthlyBudgetId: string,
-    itemName: string,
-    budgetedAmount: number
-) => {
-    try {
-        const dbResponse = await axios.post(`${baseURL}/plannedIncomes`, {
-            id: crypto.randomUUID(),
-            budgetedAmount,
-            itemName,
-            monthlyBudgetId,
-        });
-        console.log(dbResponse);
-        return dbResponse;
-    } catch (err) {
-        // if (axios.isCancel(err)) {
-        //     console.log("Fetch Aborted");
-        //     return;
-        // }
-        if (err instanceof Error) {
-            console.log(err.message);
-        }
-    }
-};
-
 export const getIncomesForMonthlyBudget = async (monthlyBudgetId: string) => {
     try {
         const response = await axios.post(`${baseURL}/plannedIncomes`, {

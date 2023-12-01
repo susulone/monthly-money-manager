@@ -3,12 +3,7 @@ import { Footer } from "../../common/components/Footer";
 import LoginPiggy from "../../assets/login-piggy.svg";
 import { LoginForm } from "./LoginForm";
 
-export const loginLoader = () => {
-    console.log("loginLoader ran");
-    return null;
-};
-
-const LoginPage = () => {
+export const LoginPage = () => {
     return (
         <section>
             <main className="page-wrapper">
@@ -26,5 +21,3 @@ const LoginPage = () => {
         </section>
     );
 };
-
-export default LoginPage;

@@ -37,11 +37,21 @@
       "transactionType": "income"
     }
   ],
-  "budgetsGroups": [
+  "budgetGroups": [
     {
       "id": 1,
       "monthlyBudgetId": "saas",
       "name": "Bills & Subscriptions"
+    },
+    {
+      "id": "2363e398-08d4-4ac1-a7e2-5ac921f72e0e",
+      "monthlyBudgetId": "saas",
+      "name": "Health"
+    },
+    {
+      "id": "2fd83516-b43d-429e-9282-446e3d145cb3",
+      "monthlyBudgetId": "saas",
+      "name": "Savings"
     }
   ],
   "budgetItems": [

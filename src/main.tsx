@@ -19,19 +19,16 @@ const stytchClient = new StytchHeadlessClient(
 import Root, { rootLoader } from "./App.tsx";
 import { ErrorPage } from "./pages/ErrorPage/ErrorPage.tsx";
 import { LandingPage } from "./pages/LandinPage/LandingPage.tsx";
+import { LoginPage } from "./features/users/LoginPage.tsx";
+import { RegisterPage } from "./features/users/RegisterPage.tsx";
 import { AboutPage } from "./pages/AboutPage/AboutPage.tsx";
-import OverviewPage, {
-    overviewLoader,
-} from "./features/overview/OverviewPage.tsx";
+import { OverviewPage } from "./features/overview/OverviewPage.tsx";
 import { BudgetsPage } from "./features/budgets/BudgetsPage.tsx";
 import { TransactionsPage } from "./features/transactions/TransactionsPage.tsx";
-import { RegisterPage } from "./features/users/RegisterPage.tsx";
-import LoginPage, { loginLoader } from "./features/users/LoginPage.tsx";
 
 // React Router
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-// { path: "/", element: <PrivateRoute component={App} /> }
 const router = createBrowserRouter([
     {
         path: "/",
@@ -42,43 +39,36 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <LandingPage />,
-                // loader: landingPageLoader,
                 errorElement: <ErrorPage />,
             },
             {
                 path: "/about",
                 element: <AboutPage />,
-                // loader: aboutPageLoader,
                 errorElement: <ErrorPage />,
             },
             {
                 path: "/login",
                 element: <LoginPage />,
-                // loader: loginLoader,
                 errorElement: <ErrorPage />,
             },
             {
                 path: "/register",
                 element: <RegisterPage />,
-                // loader: transactionsPageLoader,
                 errorElement: <ErrorPage />,
             },
             {
                 path: "/overview",
                 element: <OverviewPage />,
-                // loader: overviewLoader,
                 errorElement: <ErrorPage />,
             },
             {
                 path: "/budgets",
                 element: <BudgetsPage />,
-                // loader: budgetsPageLoader,
                 errorElement: <ErrorPage />,
             },
             {
                 path: "/transactions",
                 element: <TransactionsPage />,
-                // loader: transactionsPageLoader,
                 errorElement: <ErrorPage />,
             },
         ],
